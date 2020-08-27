@@ -1,0 +1,61 @@
+{
+    "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.7/MicrosoftTeams.schema.json",
+    "manifestVersion": "1.7",
+    "version": "1.0",
+    "id": "34c6ae8c-5e82-4845-8e36-ba6f887ebd6a",
+    "packageName": "com.permissions.devices",
+    "developer": {
+        "name": "Contoso",
+        "websiteUrl": "https://devicepermissionsdemo.azurewebsites.net/",
+        "privacyUrl": "https://devicepermissionsdemo.azurewebsites.net/",
+        "termsOfUseUrl": "https://devicepermissionsdemo.azurewebsites.net/"
+    },
+    "icons": {
+        "color": "color.png",
+        "outline": "outline.png"
+    },
+    "name": {
+        "short": "Device Permissions",
+        "full": "Device Permissions Demo App"
+    },
+    "description": {
+        "short": "Demo for device permissions",
+        "full": "Demo for device permissions"
+    },
+    "accentColor": "#FFFFFF",
+    "configurableTabs": [
+        {
+            "configurationUrl": "https://devicepermissionsdemo.azurewebsites.net/Config",
+            "canUpdateConfiguration": true,
+            "scopes": [
+                "team",
+                "groupchat"
+            ]
+        }
+    ],
+    "staticTabs": [
+        {
+            "entityId": "permissions",
+            "name": "Device Permission Demo",
+            "contentUrl": "https://devicepermissionsdemo.azurewebsites.net/",
+            "websiteUrl": "https://devicepermissionsdemo.azurewebsites.net/",
+            "scopes": [
+                "personal"
+            ]
+        }
+    ],
+    "permissions": [
+        "identity",
+        "messageTeamMembers"
+    ],
+    "validDomains": [
+        "devicepermissionsdemo.azurewebsites.net"
+    ],
+    "devicePermissions": [
+        "media",
+        "geolocation",
+        "notifications",
+        "midi",
+        "openExternal"
+    ]
+}
