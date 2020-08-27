@@ -1,0 +1,145 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<script src="https://statics.teams.cdn.office.net/sdk/v1.7.0/js/MicrosoftTeams.min.js" integrity="sha384-00JbifySIlPvW32u9rSurgu8PujfL6XFdV9iNn4ZWyurJJ33MFvpwPqmCHDq9ADv" crossorigin="anonymous"></script>
+
+<script type='text/javascript'>
+
+    function TestMedia() {
+        document.getElementById('media').textContent = " ";
+        navigator.mediaDevices.getUserMedia({ audio: true, video: { width: 200, height: 200 } })
+            .then(function (mediaStream) {
+
+                var video = document.querySelector('video');
+                // Older browsers may not have srcObject
+                if ("srcObject" in video) {
+                    video.srcObject = mediaStream;
+                } else {
+                    // Avoid using this in new browsers, as it is going away.
+                    video.src = window.URL.createObjectURL(stream);
+                }
+                video.onloadedmetadata = function (e) {
+                    video.play();
+                };
+
+                document.getElementById('media').textContent = " Permission granted ";
+            })
+            .catch(function (err) {
+                console.log(err);
+                document.getElementById('media').textContent = "Error name: " + err.name + "; Error message: " + err.message + "; Error constraintName: " + err.constraintName
+            });
+    }
+
+    function CaptureImage() {
+        document.getElementById('captureImage').textContent = " ";
+        microsoftTeams.captureImage(function (err, files) {
+            if (!err)
+                document.getElementById('capturedImage').src = "data:image/png;base64," + files[0].content;
+            else
+                document.getElementById('captureImage').textContent = "Error name: " + err.name + "; Error message: " + err.message + "; Error constraintName: " + err.constraintName;
+        });
+    }
+
+    function TestGeolocation() {
+        document.getElementById('geolocation').textContent = " ";
+        navigator.geolocation.getCurrentPosition(function (position) {
+            document.getElementById('geolocation').textContent = 'Geolocation permissions granted.' + 'Latitude: ' + position.coords.latitude + 'Longitude: ' + position.coords.longitude;
+        }, err => {
+            console.log(err);
+            document.getElementById('geolocation').textContent = "Error name: " + err.name + "; Error message: " + err.message + "; Error constraintName: " + err.constraintName
+        });
+    }
+    function TestNotification() {
+        document.getElementById('notification').textContent = " ";
+        Notification.requestPermission(function (result) {
+            console.log(result);
+            if (result === 'denied') {
+                document.getElementById('notification').textContent = 'Permission wasn\'t granted.';
+                return;
+            } else if (result === 'default') {
+                document.getElementById('notification').textContent = 'Permission request was dismissed.';
+                return;
+            }
+            document.getElementById('notification').textContent = 'Permission was granted for notifications';
+            var notification = new Notification("Hi there!");
+        });
+    }
+    function TestMidiSysex() {
+        // midi functions
+        function onMIDISuccess(midiAccess) {
+            console.log(midiAccess);
+            // when we get a succesful response, run this code
+            document.getElementById('midiSysex').textContent = 'MIDI Access Object' + JSON.stringify(midiAccess);
+        }
+
+        function onMIDIFailure(e) {
+            console.log(e);
+            // when we get a failed response, run this code
+            document.getElementById('midiSysex').textContent = "No access to MIDI devices or your browser doesn't support WebMIDI API. Please use WebMIDIAPIShim " + e;
+        }
+        document.getElementById('midiSysex').textContent = " ";
+        navigator.requestMIDIAccess({
+            sysex: true
+        }).then(onMIDISuccess, onMIDIFailure);
+    }
+    microsoftTeams.initialize();
+</script>
+
+
+<div class="jumbotron">
+    <h1 class="lead">Device Permission Demo</h1>
+    <p>You might want to enrich your tab with features that require access native device functionality like: Camera, Microphone, Location, Notifications</p>
+    <p><a target="_blank" href="https://docs.microsoft.com/en-us/microsoftteams/platform/tabs/how-to/native-device-permissions?view=msteams-client-js-latest&tabs=desktop" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+</div>
+
+<div class="row">
+    <div class="col-md-4 delimter">
+        <h2>Media (Desktop/Web)</h2>
+        <p>
+            Permissions to use a media input. Requested by methods like <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia">navigator.mediaDevices.getUserMedia</a>, navigator.webkitGetUserMedia
+        </p>
+        <p><button type=button onclick='TestMedia()'>Show Video &amp; Audio</button></p>
+        <p><div class="response" id="media"></div></p>
+        <p><video autoplay></video></p>
+    </div>
+    <div class="col-md-4 delimter">
+        <h2>CaptureImage (Mobile Only)</h2>
+        <p>
+            To capture image on mobile, Teams mobile will ask for permission when called <a href="https://docs.microsoft.com/en-us/javascript/api/@@microsoft/teams-js/microsoftteams?view=msteams-client-js-latest#captureimage--error--sdkerror--files--file-------void-">captureImage()</a>.
+        </p>
+        <p><button type=button onclick='CaptureImage()'>Capture Image</button></p>
+        <p><div class="response" id="captureImage"></div></p>
+        <p><img class="logo" alt="No Image Selected" height="200" width="200" id="capturedImage" /></p>
+    </div>
+    <div class="col-md-4 delimter">
+        <h2>Geolocation (Web/Mobile)</h2>
+        <p>
+            Permissions to  obtain the position of the device. For more info see <a href="https://www.w3schools.com/html/html5_geolocation.asp">Using HTML Geolocation</a>
+            Note: the permission are requested only once.
+        </p>
+        <p><button type=button onclick='TestGeolocation()'>Show Location</button></p>
+        <p><div class="response" id="geolocation"></div></p>
+    </div>
+    <div class="col-md-4 delimter">
+        <h2>Notifications (Desktop/Web)</h2>
+        <p>
+            Permissions to configure and display desktop notifications to the user. For more info see <a href="https://developer.mozilla.org/en-US/docs/Web/API/Notification/requestPermission">notification.requestPermission()</a>.
+            Note: the permission are requested only once.
+        </p>
+        <p><button type=button onclick='TestNotification()'>Send Notification</button></p>
+        <p><div class="response" id="notification"></div></p>
+    </div>
+    <div class="col-md-4 delimter">
+        <h2>MidiSysex (Desktop/Web)</h2>
+        <p>
+            Permissions for access to MIDI devices on the user's system with sysex option true. For more info see <a href="https://www.w3.org/TR/webmidi/#requestmidiaccess">navigator.requestMIDIAccess()</a>.
+        </p>
+        <p><button type=button onclick='TestMidiSysex()'>Show MIDIAccess</button></p>
+        <p><div class="response" id="midiSysex"></div></p>
+    </div>
+</div>
+
+
