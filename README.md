@@ -17,16 +17,16 @@ This is demo app to for device permissions.
 
 ## See it running
 
-1. Open the soution in Visual Studio
-1. Build and run your application.
-![Local Running App](Images/Local running app.png)
+1. Clone the sample and open it in Visual Studio. (Look at [similar steps if you are not sure](https://docs.microsoft.com/microsoftteams/platform/tutorials/get-started-dotnet-app-studio#download-the-sample))
+1. [Build and run your sample](https://docs.microsoft.com/microsoftteams/platform/tutorials/get-started-dotnet-app-studio#build-and-run-the-sample)
+![Local Running App](Images/Local%20running%20app.png)
 1. [Upload an app package](https://docs.microsoft.com/microsoftteams/platform/concepts/deploy-and-publish/apps-upload) (Zip file created in step 3 above) to Microsoft Teams
-![Install App](Images/Install App.png)
+![Install App](Images/Install%20App.png)
 1. Go to Device Permissions Demo Tab.
-1. Click on scenario button to test and accept the permissions.
-![Accept Permissions](Images/Accept Permissions.png)
+1. Click on respective button to test the scenario. You will get prompt to accept permission request.
+![Accept Permissions](Images/Accept%20Permissions.png)
 1. You can also try this on Mobile.
-![Mobile Demo](Images/Mobile Demo.png)
+![Mobile Demo](Images/Mobile%20Demo.png)
 
 > [!IMPORTANT]
   > Please take a look at [notes section in Device Permissions](https://docs.microsoft.com/microsoftteams/platform/concepts/device-capabilities/native-device-permissions?tabs=desktop) documentation as not all devices support these permissions.
