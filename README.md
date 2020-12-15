@@ -25,7 +25,7 @@ This is demo app to for device permissions.
 1. Go to Device Permissions Demo Tab.
 1. Click on respective button to test the scenario. You will get prompt to accept permission request.
 ![Accept Permissions](Images/Accept%20Permissions.png)
-1. You can also try this on Mobile.
+1. You can also try this on Mobile.<br/>
 ![Mobile Demo](Images/Mobile%20Demo.png)
 
 > [!IMPORTANT]
