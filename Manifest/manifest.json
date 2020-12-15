@@ -1,61 +1,61 @@
 {
-    "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.7/MicrosoftTeams.schema.json",
-    "manifestVersion": "1.7",
-    "version": "1.0",
-    "id": "34c6ae8c-5e82-4845-8e36-ba6f887ebd6a",
-    "packageName": "com.permissions.devices",
-    "developer": {
-        "name": "Contoso",
-        "websiteUrl": "https://[YourSiteUrl]",
-        "privacyUrl": "https://[YourSiteUrl]",
-        "termsOfUseUrl": "https://[YourSiteUrl]"
-    },
-    "icons": {
-        "color": "color.png",
-        "outline": "outline.png"
-    },
-    "name": {
-        "short": "Device Permissions",
-        "full": "Device Permissions Demo App"
-    },
-    "description": {
-        "short": "Demo for device permissions",
-        "full": "Demo for device permissions"
-    },
-    "accentColor": "#FFFFFF",
-    "configurableTabs": [
-        {
-            "configurationUrl": "https://[YourSiteUrl]/Config",
-            "canUpdateConfiguration": true,
-            "scopes": [
-                "team",
-                "groupchat"
-            ]
-        }
-    ],
-    "staticTabs": [
-        {
-            "entityId": "permissions",
-            "name": "Device Permission Demo",
-            "contentUrl": "https://[YourSiteUrl]",
-            "websiteUrl": "https://[YourSiteUrl]",
-            "scopes": [
-                "personal"
-            ]
-        }
-    ],
-    "permissions": [
-        "identity",
-        "messageTeamMembers"
-    ],
-    "validDomains": [
-        "[YourSiteDomain]"
-    ],
-    "devicePermissions": [
-        "media",
-        "geolocation",
-        "notifications",
-        "midi",
-        "openExternal"
-    ]
+  "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.7/MicrosoftTeams.schema.json",
+  "manifestVersion": "1.7",
+  "version": "1.0",
+  "id": "34c6ae8c-5e82-4845-8e36-ba6f887ebd6a",
+  "packageName": "com.permissions.devices",
+  "developer": {
+    "name": "Contoso",
+    "websiteUrl": "https://<<BASE_URI_DOMAIN>>",
+    "privacyUrl": "https://<<BASE_URI_DOMAIN>>",
+    "termsOfUseUrl": "https://<<BASE_URI_DOMAIN>>"
+  },
+  "icons": {
+    "color": "color.png",
+    "outline": "outline.png"
+  },
+  "name": {
+    "short": "Device Permissions",
+    "full": "Device Permissions Demo App"
+  },
+  "description": {
+    "short": "Demo for device permissions",
+    "full": "Demo for device permissions"
+  },
+  "accentColor": "#FFFFFF",
+  "configurableTabs": [
+    {
+      "configurationUrl": "https://<<BASE_URI_DOMAIN>>/Config",
+      "canUpdateConfiguration": true,
+      "scopes": [
+        "team",
+        "groupchat"
+      ]
+    }
+  ],
+  "staticTabs": [
+    {
+      "entityId": "permissions",
+      "name": "Device Permission Demo",
+      "contentUrl": "https://<<BASE_URI_DOMAIN>>",
+      "websiteUrl": "https://<<BASE_URI_DOMAIN>>",
+      "scopes": [
+        "personal"
+      ]
+    }
+  ],
+  "permissions": [
+    "identity",
+    "messageTeamMembers"
+  ],
+  "validDomains": [
+    "<<BASE_URI_DOMAIN>>"
+  ],
+  "devicePermissions": [
+    "media",
+    "geolocation",
+    "notifications",
+    "midi",
+    "openExternal"
+  ]
 }
